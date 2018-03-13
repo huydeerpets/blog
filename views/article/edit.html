@@ -1,0 +1,141 @@
+<link rel="stylesheet" href="/static/editor.md/css/editormd.min.css" />
+<div class="layui-layout layui-layout-admin" style="padding-left: 40px;margin-top: 20px;">
+    <form class="layui-form" action="" method="post">
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">文章标题</label>
+            <div class="layui-input-block " style="width: 400px">
+                <input type="text" name="title" id="title" lay-verify="required" autocomplete="off" placeholder="文章标题" class="layui-input" value="<<<.data.Title>>>">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">文章简介</label>
+            <div class="layui-input-block " style="width: 400px">
+                <input type="text" name="summary" id="summary" lay-verify="required" autocomplete="off" placeholder="文章简介" class="layui-input" value="<<<.data.Summary>>>">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">选择标签</label>
+            <div class="layui-input-block">
+            <<<range $k, $v := .tagList>>>
+                <input type="checkbox" name="tag" lay-filter="tag" title="<<<$v.name>>>" value="<<<$v.id>>>" <<<if eq $v.checked 1>>>checked<<<end>>>>
+            <<<end>>>
+            </div>
+            <<</*<div class="layui-form-mid layui-word-aux">*</div>*/>>>
+        </div>
+        <input type="hidden" value="" id="tags" name="tags">
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">文章状态</label>
+            <div class="layui-input-block ">
+                <input type="radio" name="status" value="0" title="废弃" <<<if eq .data.Status 0>>>checked<<<end>>>>
+                <input type="radio" name="status" value="1" title="草稿" <<<if eq .data.Status 1>>>checked<<<end>>>>
+                <input type="radio" name="status" value="2" title="审核通过" <<<if eq .data.Status 2>>>checked<<<end>>>>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">文章详细</label>
+            <div class="layui-input-inline" id="article-editormd" style="border: 1px solid #e4e4e4">
+                <textarea name="content" style="display:none;"><<<.articleContent.Content>>></textarea>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">上传图片</label>
+            <div class="layui-upload">
+                <button type="button" class="layui-btn" id="thumb">上传图片</button>
+                <div class="layui-input-inline" id="article-editormd" style="width:95px" >
+                    <img class="layui-upload-img" id="demo1" style=" width: 92px;height: 92px;" src="<<<.data.Thumb>>>">
+                    <p id="demoText"></p>
+                </div>
+            </div>
+        </div>
+        <input type="hidden" name="thumb" id="thumb" value="<<<.data.Thumb>>>">
+
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn" lay-submit="" lay-filter="sub">保存</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </div>
+    </form>
+</div>
+<script>
+    layui.use(['form','element','table','layer','jquery'],function(){
+        var form = layui.form; //只有执行了这一步，部分表单元素才会自动修饰成功
+        var $ = layui.jquery;
+        var tag = [];
+
+        form.on('checkbox(tag)', function(data){
+            if(data.elem.checked==true){
+                tag.push(data.value)
+            }else{
+                $.each(tag,function(index,item){
+                    // index是索引值（即下标）   item是每次遍历得到的值；
+                    if(item==data.value){
+                        tag.splice(index,1);
+                    }
+                });
+            }
+            $("#tags").val(tag.join(","));
+        });
+
+        form.on('submit(sub)', function(data){
+            var form_data = data.field;
+            $.post('<<<urlfor "ArticleController.AjaxSave">>>', form_data, function (out) {
+                if (out.status == 0) {
+                    layer.msg("操作成功",{icon: 1},function () {
+                        window.location.href="/article/list";
+                    })
+                } else {
+                    layer.msg(out.message)
+                }
+            }, "json");
+            return false;
+        });
+
+        //但是，如果你的HTML是动态生成的，自动渲染就会失效
+        //因此你需要在相应的地方，执行下述方法来手动渲染，跟这类似的还有 element.init();
+        form.render();
+    });
+
+    layui.use('upload', function(){
+        var $ = layui.jquery
+                ,upload = layui.upload;
+
+        //普通图片上传
+        var uploadInst = upload.render({
+            elem: '#thumb'
+            ,url: '/upload/uploadimgone'
+            ,before: function(obj){
+                //预读本地文件示例，不支持ie8
+                obj.preview(function(index, file, result){
+                    $('#demo1').attr('src', result); //图片链接（base64）
+                });
+            }
+            ,done: function(res){
+                if(res.code == 0){
+                    var filevalue = res.data.filepath;
+                    $("input[name='thumb']").val(filevalue);
+                    return layer.msg('上传成功');
+                }else{
+                    return layer.msg('上传失败');
+                }
+            }
+            ,error: function(){
+                //演示失败状态，并实现重传
+                var demoText = $('#demoText');
+                demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-mini demo-reload">重试</a>');
+                demoText.find('.demo-reload').on('click', function(){
+                    uploadInst.upload();
+                });
+            }
+        })
+    });
+
+</script>
+
+<<<template "public/editormd.html" .>>>
