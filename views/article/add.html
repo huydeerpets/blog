@@ -19,11 +19,11 @@
         <div class="layui-form-item">
             <label class="layui-form-label">选择标签</label>
             <div class="layui-input-block">
-            <<<range $k, $v := .tagList>>>
-                <input type="checkbox" name="tag" lay-filter="tag" title="<<<$v.Name>>>" value="<<<$v.Id>>>">
-            <<<end>>>
+            {{range $k, $v := .tagList}}
+                <input type="checkbox" name="tag" lay-filter="tag" title="{{$v.Name}}" value="{{$v.Id}}">
+            {{end}}
             </div>
-            <<</*<div class="layui-form-mid layui-word-aux">*</div>*/>>>
+            {{/*<div class="layui-form-mid layui-word-aux">*</div>*/}}
         </div>
         <input type="hidden" value="" id="tags" name="tags">
 
@@ -87,7 +87,7 @@
         form.on('submit(sub)', function(data){
             var form_data = data.field;
             console.log(data);
-            $.post('<<<urlfor "ArticleController.AjaxSave">>>', form_data, function (out) {
+            $.post('{{urlfor "ArticleController.AjaxSave"}}', form_data, function (out) {
                 if (out.status == 0) {
                     layer.msg("操作成功",{icon: 1},function () {
                         // window.location.href="/article/list";
@@ -140,4 +140,4 @@
 
 </script>
 
-<<<template "public/editormd.html" .>>>
+{{template "public/editormd.html" .}}

@@ -18,9 +18,9 @@
                     <div class="layui-inline" style="width: 20%;text-align: left;">
                         <select name="status" id="status" lay-verify="required"  lay-search="">
                             <option value="-1">全部状态</option>
-                        <<<range $index,$elem := .auditStatus>>>
-                            <option value="<<<$index>>>"> <<<$elem>>></option>
-                        <<<end>>>
+                        {{range $index,$elem := .auditStatus}}
+                            <option value="{{$index}}"> {{$elem}}</option>
+                        {{end}}
                         </select>
                     </div>
                     <button class="layui-btn" data-type="reload" id="reload">查询</button>
@@ -183,7 +183,7 @@
 
             layer.confirm("确定要选中的接口提交审核吗？", function(){
                 var add_audit_data = {"ids":ids,"status":1}
-                $.post('<<<urlfor "ArticleController.AjaxChangeStatus">>>', add_audit_data, function (out) {
+                $.post('{{urlfor "ArticleController.AjaxChangeStatus"}}', add_audit_data, function (out) {
                     if (out.status == 0) {
                         layer.msg("操作成功",{icon: 1},function () {
                             $("#reload").click();
@@ -215,7 +215,7 @@
 
             layer.confirm("确定要选中的接口审核通过吗？", function(){
                 var add_audit_data = {"ids":ids,"status":2}
-                $.post('<<<urlfor "ArticleController.AjaxChangeStatus">>>', add_audit_data, function (out) {
+                $.post('{{urlfor "ArticleController.AjaxChangeStatus"}}', add_audit_data, function (out) {
                     if (out.status == 0) {
                         layer.msg("操作成功",{icon: 1},function () {
                             $("#reload").click();
@@ -243,7 +243,7 @@
 
                 layer.confirm(msg, function(){
                     var del_data = {"id":data.id}
-                    $.post('<<<urlfor "ArticleController.AjaxChangeStatus">>>', del_data, function (out) {
+                    $.post('{{urlfor "ArticleController.AjaxChangeStatus"}}', del_data, function (out) {
                         if (out.status == 0) {
                             layer.msg("操作成功",{icon: 1},function () {
                                 $("#reload").click();

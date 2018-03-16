@@ -20,3 +20,17 @@ func TagGetList() ([]*Tag)  {
 	return list
 }
 
+
+func GetTagInfo(tl []*Tag, tagId int) (tagInfo Tag){
+	for _, v := range tl{
+		if v.Id == tagId{
+			tagInfo = *v
+		}
+	}
+	return
+}
+
+
+
+
+

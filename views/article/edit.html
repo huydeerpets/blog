@@ -5,41 +5,41 @@
         <div class="layui-form-item">
             <label class="layui-form-label">文章标题</label>
             <div class="layui-input-block " style="width: 400px">
-                <input type="text" name="title" id="title" lay-verify="required" autocomplete="off" placeholder="文章标题" class="layui-input" value="<<<.data.Title>>>">
+                <input type="text" name="title" id="title" lay-verify="required" autocomplete="off" placeholder="文章标题" class="layui-input" value="{{.data.Title}}">
             </div>
         </div>
 
         <div class="layui-form-item">
             <label class="layui-form-label">文章简介</label>
             <div class="layui-input-block " style="width: 400px">
-                <input type="text" name="summary" id="summary" lay-verify="required" autocomplete="off" placeholder="文章简介" class="layui-input" value="<<<.data.Summary>>>">
+                <input type="text" name="summary" id="summary" lay-verify="required" autocomplete="off" placeholder="文章简介" class="layui-input" value="{{.data.Summary}}">
             </div>
         </div>
 
         <div class="layui-form-item">
             <label class="layui-form-label">选择标签</label>
             <div class="layui-input-block">
-            <<<range $k, $v := .tagList>>>
-                <input type="checkbox" name="tag" lay-filter="tag" title="<<<$v.name>>>" value="<<<$v.id>>>" <<<if eq $v.checked 1>>>checked<<<end>>>>
-            <<<end>>>
+            {{range $k, $v := .tagList}}
+                <input type="checkbox" name="tag" lay-filter="tag" title="{{$v.name}}" value="{{$v.id}}" {{if eq $v.checked 1}}checked{{end}}>
+            {{end}}
             </div>
-            <<</*<div class="layui-form-mid layui-word-aux">*</div>*/>>>
+            {{/*<div class="layui-form-mid layui-word-aux">*</div>*/}}
         </div>
         <input type="hidden" value="" id="tags" name="tags">
 
         <div class="layui-form-item">
             <label class="layui-form-label">文章状态</label>
             <div class="layui-input-block ">
-                <input type="radio" name="status" value="0" title="废弃" <<<if eq .data.Status 0>>>checked<<<end>>>>
-                <input type="radio" name="status" value="1" title="草稿" <<<if eq .data.Status 1>>>checked<<<end>>>>
-                <input type="radio" name="status" value="2" title="审核通过" <<<if eq .data.Status 2>>>checked<<<end>>>>
+                <input type="radio" name="status" value="0" title="废弃" {{if eq .data.Status 0}}checked{{end}}>
+                <input type="radio" name="status" value="1" title="草稿" {{if eq .data.Status 1}}checked{{end}}>
+                <input type="radio" name="status" value="2" title="审核通过" {{if eq .data.Status 2}}checked{{end}}>
             </div>
         </div>
 
         <div class="layui-form-item">
             <label class="layui-form-label">文章详细</label>
             <div class="layui-input-inline" id="article-editormd" style="border: 1px solid #e4e4e4">
-                <textarea name="content" style="display:none;"><<<.articleContent.Content>>></textarea>
+                <textarea name="content" style="display:none;">{{.articleContent.Content}}</textarea>
             </div>
         </div>
 
@@ -48,12 +48,12 @@
             <div class="layui-upload">
                 <button type="button" class="layui-btn" id="thumb">上传图片</button>
                 <div class="layui-input-inline" id="article-editormd" style="width:95px" >
-                    <img class="layui-upload-img" id="demo1" style=" width: 92px;height: 92px;" src="<<<.data.Thumb>>>">
+                    <img class="layui-upload-img" id="demo1" style=" width: 92px;height: 92px;" src="{{.data.Thumb}}">
                     <p id="demoText"></p>
                 </div>
             </div>
         </div>
-        <input type="hidden" name="thumb" id="thumb" value="<<<.data.Thumb>>>">
+        <input type="hidden" name="thumb" id="thumb" value="{{.data.Thumb}}">
 
         <div class="layui-form-item">
             <div class="layui-input-block">
@@ -85,7 +85,7 @@
 
         form.on('submit(sub)', function(data){
             var form_data = data.field;
-            $.post('<<<urlfor "ArticleController.AjaxSave">>>', form_data, function (out) {
+            $.post('{{urlfor "ArticleController.AjaxSave"}}', form_data, function (out) {
                 if (out.status == 0) {
                     layer.msg("操作成功",{icon: 1},function () {
                         window.location.href="/article/list";
@@ -138,4 +138,4 @@
 
 </script>
 
-<<<template "public/editormd.html" .>>>
+{{template "public/editormd.html" .}}

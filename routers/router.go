@@ -8,7 +8,8 @@ import (
 func init() {
 	//前台
     beego.Router("/", &controllers.MainController{}, "*:Index")
-	beego.AutoRouter(&controllers.MainController{})
+	beego.Router("/ajax", &controllers.MainController{}, "*:AjaxArticleTable")
+	//beego.AutoRouter(&controllers.MainController{})
 
     //后台
 	beego.Router("/login", &controllers.LoginController{}, "*:LoginIn")

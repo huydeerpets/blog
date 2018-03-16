@@ -1,7 +1,7 @@
-<<<template "fpublic/header.html" >>>
+{{template "fpublic/header.html" }}
 <body>
 <!-- 导航 -->
-<<<template "fpublic/nav.html" >>>
+{{template "fpublic/nav.html" }}
 
 <!-- 主体（一般只改变这里的内容） -->
 <div class="blog-body">
@@ -159,7 +159,7 @@
                     </div>
                 </div>
 
-                <<<template "fpublic/main_right.html" >>>
+                {{template "fpublic/main_right.html" }}
 
                 <!-- 个性签名 -->
                 <div class="blog-module shadow animated fadeInRight">
@@ -181,10 +181,13 @@
         <div class="clear"></div>
     </div>
 </div>
+
 <!-- 底部 -->
-<<<template "fpublic/footer.html" >>>
+{{template "fpublic/footer.html" }}
 
-<<<template "fpublic/tool.html" >>>
+{{template "fpublic/tool.html" }}
 
+<!-- 本页脚本 -->
+<script src="/static/frontend/js/index.js"></script>
 </body>
 </html>

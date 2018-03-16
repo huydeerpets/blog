@@ -12,7 +12,7 @@ import (
 )
 
 type BaseController struct{
-	beego.Controller
+	ToolsController
 	controllerName  string
 	actionName      string
 	user 			*models.Admin
@@ -126,22 +126,6 @@ func (self *BaseController) AdminAuth()  {
 	self.allowUrl = allow_url + "/home/index"
 }
 
-// 是否POST提交
-func (self *BaseController) isPost() bool{
-	return self.Ctx.Request.Method == "POST"
-}
-
-// 获取用户IP地址
-func (self *BaseController) getClientIp() string{
-	s := strings.Split(self.Ctx.Request.RemoteAddr, ":")
-	return s[0]
-}
-
-// 重定向
-func (self * BaseController) redirect(url string){
-	self.Redirect(url, 302)
-	self.StopRun()
-}
 
 func (self *BaseController) display(tpl ...string)  {
 	var tplname string
@@ -152,27 +136,6 @@ func (self *BaseController) display(tpl ...string)  {
 	}
 	self.Layout = "public/layout.html"
 	self.TplName = tplname
-}
-
-func (self *BaseController) ajaxMsg(msg interface{}, msgno int)  {
-	out := make(map[string]interface{})
-	out["status"] = msgno
-	out["message"] = msg
-	self.Data["json"] = out
-	self.ServeJSON()
-	self.StopRun()
-}
-
-//ajax返回 列表
-func (self *BaseController) ajaxList(msg interface{}, msgno int, count int64, data interface{})  {
-	out := make(map[string]interface{})
-	out["code"] = msgno
-	out["msg"] = msg
-	out["count"] = count
-	out["data"] = data
-	self.Data["json"] = out
-	self.ServeJSON()
-	self.StopRun()
 }
 
 //上传图片,返回值为原图及缩略图路径

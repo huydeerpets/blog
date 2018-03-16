@@ -12,24 +12,24 @@
 
     </div>
     <div class="layui-col-xs2" style="float: right;text-align: right;">
-        <a href="/article/edit?id=<<<.data.id>>>" id="add_source" class="layui-btn  layui-btn-sm"> 编辑 </a>
+        <a href="/article/edit?id={{.data.id}}" id="add_source" class="layui-btn  layui-btn-sm"> 编辑 </a>
     </div>
 </div>
 
 <div class="api-infos">
     <ul>
-        <li><strong>文章标题：</strong> <<<.data.title>>></li>
-        <li><strong>文章坚决：</strong> <<<.data.summary>>></li>
-        <li><strong>文章状态：</strong> <<<str2html .data.status_text>>></li>
-        <li><strong>作者：</strong> <<<.data.author_name>>></li>
-        <li><strong>创建时间：</strong> <<<.data.create_time>>> </li>
-        <li><strong>最后修改：</strong> <<<.data.update_time>>> </li>
+        <li><strong>文章标题：</strong> {{.data.title}}</li>
+        <li><strong>文章坚决：</strong> {{.data.summary}}</li>
+        <li><strong>文章状态：</strong> {{str2html .data.status_text}}</li>
+        <li><strong>作者：</strong> {{.data.author_name}}</li>
+        <li><strong>创建时间：</strong> {{.data.create_time}} </li>
+        <li><strong>最后修改：</strong> {{.data.update_time}} </li>
     </ul>
     <div class="title"> &nbsp;文章详细 </div>
     <hr>
     <div id="markdown-view" style="width: 95%">
         <textarea style="display:none;" name="markdown">
-        <<<.articleContent.Content>>>
+        {{.articleContent.Content}}
         </textarea>
     </div>
 </div>
@@ -58,4 +58,4 @@
     });
 </script>
 
-<<<template "public/editormd_show.html" >>>
+{{template "public/editormd_show.html" }}
