@@ -3,7 +3,7 @@ package controllers
 import (
 	"strings"
 	"blog/models"
-	"fmt"
+	//"strconv"
 	"strconv"
 )
 
@@ -52,7 +52,7 @@ func (self *MainController) AjaxArticleTable(){
 	}
 
 	//获取taglist
-	//tagList := models.TagGetList()
+	tagList := models.TagGetList()
 
 	//查询条件
 	title := strings.TrimSpace(self.GetString("title"))
@@ -68,22 +68,28 @@ func (self *MainController) AjaxArticleTable(){
 	if tag != ""{
 		filters = append(filters, "tags__icontains", tag)
 	}
+
 	result, count := models.ArticleGetList(page, limit, filters...)
 	list := make([]map[string]interface{}, len(result))
 	for k, v := range result{
 		row := make(map[string]interface{})
 		row["id"] = v.Id
 
-		tagsIdArr := strings.Split(v.Tags, ",")
-		fmt.Printf("a-------------------%#v", tagsIdArr)
-		for _, vv := range tagsIdArr{
-			vv= int(vv)
-			fmt.Printf("b--------------%#v", strconv.Atoi(vv))
-			//vv, _ = strconv.Atoi(vv)
-			//models.GetTagInfo(tagList, vv)
+		tags := strings.Split(v.Tags, ",")
+		tagtemplist := make([]map[string]interface{}, 0)
+		for _, v := range tagList {
+			tagrow := make(map[string]interface{})
+			for i := 0; i < len(tags); i++ {
+				tag, _ := strconv.Atoi(tags[i])
+				if tag == v.Id {
+					tagrow["id"] = v.Id
+					tagrow["name"] = v.Name
+					tagtemplist = append(tagtemplist,tagrow)
+				}
+			}
 		}
+		row["tags"] = tagtemplist
 
-		row["tags"] = v.Tags
 		row["title"] = v.Title
 		row["summary"] = v.Summary
 		row["thumb"] = v.Thumb
