@@ -5,6 +5,7 @@ import (
 	"blog/models"
 	//"strconv"
 	"strconv"
+	"blog/libs"
 )
 
 type MainController struct {
@@ -89,9 +90,11 @@ func (self *MainController) AjaxArticleTable(){
 			}
 		}
 		row["tags"] = tagtemplist
-
 		row["title"] = v.Title
 		row["summary"] = v.Summary
+		if len(v.Thumb)>0 {
+			v.Thumb = libs.GetImageSizetype(v.Thumb, "middle")
+		}
 		row["thumb"] = v.Thumb
 		row["p_sort"] = v.PSort
 		row["author_name"] = v.AuthorName
