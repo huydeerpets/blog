@@ -56,7 +56,7 @@ func (self *BaseController) auth()  {
 		userId, _ := strconv.Atoi(idstr)
 		if(userId > 0){
 			user, err := models.AdminGetById(userId)
-			if err == nil && password == libs.Md5([]byte(self.getClientIp()+"|"+user.Password+user.Salt)){
+			if err == nil && password == libs.Md5([]byte(self.QgetClientIp()+"|"+user.Password+user.Salt)){
 				self.userId = user.Id
 				self.loginName = user.LoginName
 				self.userName = user.RealName

@@ -27,9 +27,30 @@
 <!-- 分类导航 -->
 <div class="article-category shadow ">
     <div class="article-category-title">分类导航</div>
-    <a href="javascript:go(1)">杂文随笔</a>
-    <a href="javascript:go(2)">JAVA基础</a>
-    <a href="javascript:go(3)">Web前端</a>
-    <a href="javascript:go(4)">数据库</a>
+    {{/*<a href="javascript:go(1)">杂文随笔</a>*/}}
+    {{/*<a href="javascript:go(2)">JAVA基础</a>*/}}
+    {{/*<a href="javascript:go(3)">Web前端</a>*/}}
+    {{/*<a href="javascript:go(4)">数据库</a>*/}}
     <div class="clear"></div>
 </div>
+
+<script>
+    $.ajax({
+        url: "api/v1/gettaglist",
+        type: 'GET',
+        dataType: 'json',
+        data: ''
+    })
+        .done(function (res) {
+            if (res.code==0) {
+                var html = '';
+                for (var i=0; i<res.data.length; i++) {
+                    html += '<a href="./article/tag/'+res.data[i].Id+'">'+res.data[i].Name+'</a>';
+                }
+                $('.article-category-title').after(html);
+            }
+        })
+        .fail(function () {
+
+        })
+</script>

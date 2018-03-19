@@ -92,7 +92,7 @@ func (self *AdminController) AjaxSave() {
 		_, err := models.AdminGetByName(Admin.LoginName)
 
 		if err == nil {
-			self.ajaxMsg("登录名已经存在", MSG_ERR)
+			self.QajaxMsg("登录名已经存在", MSG_ERR)
 		}
 		//新增
 		pwd, salt := libs.Password(4, "")
@@ -101,9 +101,9 @@ func (self *AdminController) AjaxSave() {
 		Admin.CreateTime = time.Now().Unix()
 		Admin.CreateId = self.userId
 		if _, err := models.AdminAdd(Admin); err != nil {
-			self.ajaxMsg(err.Error(), MSG_ERR)
+			self.QajaxMsg(err.Error(), MSG_ERR)
 		}
-		self.ajaxMsg("", MSG_OK)
+		self.QajaxMsg("", MSG_OK)
 	}
 
 	Admin, _ := models.AdminGetById(Admin_id)
@@ -127,9 +127,9 @@ func (self *AdminController) AjaxSave() {
 		Admin.Salt = salt
 	}
 	if err := Admin.Update(); err != nil {
-		self.ajaxMsg(err.Error(), MSG_ERR)
+		self.QajaxMsg(err.Error(), MSG_ERR)
 	}
-	self.ajaxMsg(strconv.Itoa(resetPwd), MSG_OK)
+	self.QajaxMsg(strconv.Itoa(resetPwd), MSG_OK)
 }
 
 func (self *AdminController) AjaxDel() {
@@ -137,7 +137,7 @@ func (self *AdminController) AjaxDel() {
 	Admin_id, _ := self.GetInt("id")
 	status := strings.TrimSpace(self.GetString("status"))
 	if Admin_id == 1 {
-		self.ajaxMsg("超级管理员不允许操作", MSG_ERR)
+		self.QajaxMsg("超级管理员不允许操作", MSG_ERR)
 	}
 
 	Admin_status := 0
@@ -150,9 +150,9 @@ func (self *AdminController) AjaxDel() {
 	Admin.Id = Admin_id
 
 	if err := Admin.Update(); err != nil {
-		self.ajaxMsg(err.Error(), MSG_ERR)
+		self.QajaxMsg(err.Error(), MSG_ERR)
 	}
-	self.ajaxMsg("操作成功", MSG_OK)
+	self.QajaxMsg("操作成功", MSG_OK)
 }
 
 func (self *AdminController) Table() {
@@ -196,5 +196,5 @@ func (self *AdminController) Table() {
 		row["status_text"] = StatusText[v.Status]
 		list[k] = row
 	}
-	self.ajaxList("成功", MSG_OK, count, list)
+	self.QajaxList("成功", MSG_OK, count, list)
 }

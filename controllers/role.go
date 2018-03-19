@@ -64,7 +64,7 @@ func (self *RoleController) AjaxSave(){
 		role.CreateId = self.userId
 		role.UpdateId = self.userId
 		if id, err := models.RoleAdd(role); err != nil{
-			self.ajaxMsg(err.Error(), MSG_ERR)
+			self.QajaxMsg(err.Error(), MSG_ERR)
 		}else{
 			ra := new(models.RoleAuth)
 			authsSlice := strings.Split(auths, ",")
@@ -75,14 +75,14 @@ func (self *RoleController) AjaxSave(){
 				models.RoleAuthAdd(ra)
 			}
 		}
-		self.ajaxMsg("", MSG_OK)
+		self.QajaxMsg("", MSG_OK)
 	}
 	//修改
 	role.Id = role_id
 	role.UpdateTime = time.Now().Unix()
 	role.UpdateId = self.userId
 	if err := role.Update(); err != nil{
-		self.ajaxMsg(err.Error(), MSG_ERR)
+		self.QajaxMsg(err.Error(), MSG_ERR)
 	}else{
 		//删除该角色权限
 		models.RoleAuthDelete(role_id)
@@ -95,7 +95,7 @@ func (self *RoleController) AjaxSave(){
 			models.RoleAuthAdd(ra)
 		}
 	}
-	self.ajaxMsg("", MSG_OK)
+	self.QajaxMsg("", MSG_OK)
 }
 
 func (self *RoleController) AjaxDel(){
@@ -106,11 +106,11 @@ func (self *RoleController) AjaxDel(){
 	role.UpdateTime = time.Now().Unix()
 
 	if err := role.Update(); err != nil{
-		self.ajaxMsg(err.Error(), MSG_ERR)
+		self.QajaxMsg(err.Error(), MSG_ERR)
 	}
 	//删除该角色权限
 	//models.RoleAuthDelete(role_id)
-	self.ajaxMsg("", MSG_OK)
+	self.QajaxMsg("", MSG_OK)
 
 }
 
@@ -144,5 +144,5 @@ func (self *RoleController) Table()  {
 		row["update_time"] = beego.Date(time.Unix(v.UpdateTime, 0), "Y-m-d H:i:s")
 		list[k] = row
 	}
-	self.ajaxList("成功", MSG_OK, count, list)
+	self.QajaxList("成功", MSG_OK, count, list)
 }

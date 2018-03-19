@@ -97,7 +97,7 @@ func GetImageSizetype(path string, sizetype string) string{
 	}else{
 		imgpath = path
 	}
-	fmt.Printf(imgpath)
+	//fmt.Printf(imgpath)
 	return imgpath
 }
 

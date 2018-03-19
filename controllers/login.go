@@ -22,7 +22,7 @@ func (self *LoginController) LoginIn() {
 	//}
 	beego.ReadFromRequest(&self.Controller)
 
-	if self.isPost() {
+	if self.QisPost() {
 		username := strings.TrimSpace(self.GetString("username"))
 		password := strings.TrimSpace(self.GetString("password"))
 
@@ -36,10 +36,10 @@ func (self *LoginController) LoginIn() {
 			} else if user.Status == -1 {
 				errorMsg = "该帐号已禁用"
 			} else {
-				user.LastIp = self.getClientIp()
+				user.LastIp = self.QgetClientIp()
 				user.LastLogin = time.Now().Unix()
 				user.Update()
-				authkey := libs.Md5([]byte(self.getClientIp() + "|" + user.Password + user.Salt))
+				authkey := libs.Md5([]byte(self.QgetClientIp() + "|" + user.Password + user.Salt))
 				self.Ctx.SetCookie("auth", strconv.Itoa(user.Id)+"|"+authkey, 7*86400)
 
 				self.redirect(beego.URLFor("HomeController.Index"))

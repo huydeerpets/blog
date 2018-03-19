@@ -35,7 +35,7 @@ func (self *AuthController) GetNodes()  {
 		row["open"] = true
 		list[k] = row
 	}
-	self.ajaxList("成功", MSG_OK, count, list)
+	self.QajaxList("成功", MSG_OK, count, list)
 }
 
 //获取一个节点
@@ -53,7 +53,7 @@ func (self *AuthController) GetNode(){
 	row["icon"] = result.Icon
 	//fmt.Println(row)
 
-	self.ajaxList("成功", MSG_OK, 0, row)
+	self.QajaxList("成功", MSG_OK, 0, row)
 }
 
 //新增或修改
@@ -76,16 +76,16 @@ func (self *AuthController) AjaxSave()  {
 		auth.CreateId = self.userId
 		auth.UpdateId = self.userId
 		if _, err := models.AuthAdd(auth); err != nil{
-			self.ajaxMsg(err.Error(), MSG_ERR)
+			self.QajaxMsg(err.Error(), MSG_ERR)
 		}
 	}else{
 		auth.Id = id
 		auth.UpdateId = self.userId
 		if err := auth.Update(); err != nil{
-			self.ajaxMsg(err.Error(), MSG_ERR)
+			self.QajaxMsg(err.Error(), MSG_ERR)
 		}
 	}
-	self.ajaxMsg("", MSG_OK)
+	self.QajaxMsg("", MSG_OK)
 
 }
 
@@ -96,7 +96,7 @@ func (self *AuthController) AjaxDel() {
 	auth.Id = id
 	auth.Status = 0
 	if err := auth.Update(); err != nil{
-		self.ajaxMsg(err.Error(), MSG_ERR)
+		self.QajaxMsg(err.Error(), MSG_ERR)
 	}
-	self.ajaxMsg("", MSG_OK)
+	self.QajaxMsg("", MSG_OK)
 }

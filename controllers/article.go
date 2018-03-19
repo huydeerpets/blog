@@ -80,7 +80,7 @@ func (self *ArticleController) Table(){
 		list[k] = row
 	}
 	fmt.Printf("------------%#v",list)
-	self.ajaxList("成功", MSG_OK, count, list)
+	self.QajaxList("成功", MSG_OK, count, list)
 }
 
 //查看详情
@@ -130,9 +130,9 @@ func (self *ArticleController) AjaxChangeStatus()  {
 	}
 
 	if err := Article.Update(); err != nil{
-		self.ajaxMsg(err.Error(), MSG_ERR)
+		self.QajaxMsg(err.Error(), MSG_ERR)
 	}
-	self.ajaxMsg("", MSG_OK)
+	self.QajaxMsg("", MSG_OK)
 }
 
 
@@ -187,9 +187,9 @@ func (self *ArticleController) AjaxUpdate(){
 
 	_, err := models.FieldUpdateById(article_id, status, field_one)
 	if err != nil{
-		self.ajaxMsg(err.Error(), MSG_ERR)
+		self.QajaxMsg(err.Error(), MSG_ERR)
 	}
-	self.ajaxMsg("", MSG_OK)
+	self.QajaxMsg("", MSG_OK)
 }
 
 func (self *ArticleController) AjaxSave(){
@@ -220,10 +220,10 @@ func (self *ArticleController) AjaxSave(){
 
 		if err != nil{
 			err = o.Rollback()
-			self.ajaxMsg(err.Error(), MSG_ERR)
+			self.QajaxMsg(err.Error(), MSG_ERR)
 		}else{
 			err = o.Commit()
-			self.ajaxMsg("", MSG_OK)
+			self.QajaxMsg("", MSG_OK)
 		}
 
 	}
@@ -252,10 +252,10 @@ func (self *ArticleController) AjaxSave(){
 
 	if err != nil{
 		err = orm.NewOrm().Rollback()
-		self.ajaxMsg(err.Error(), MSG_ERR)
+		self.QajaxMsg(err.Error(), MSG_ERR)
 	}else{
 		err = orm.NewOrm().Commit()
-		self.ajaxMsg("", MSG_OK)
+		self.QajaxMsg("", MSG_OK)
 	}
 
 }

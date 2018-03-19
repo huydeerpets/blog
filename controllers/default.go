@@ -36,7 +36,7 @@ func (self *MainController) About(){
 //获取tag
 func (self *MainController) GetTagList(){
 	tagList := models.TagGetList()
-	self.ajaxList("成功", MSG_OK, 0, tagList)
+	self.QajaxList("成功", MSG_OK, 0, tagList)
 }
 
 //ajax获取文章列表
@@ -89,6 +89,7 @@ func (self *MainController) AjaxArticleTable(){
 				}
 			}
 		}
+
 		row["tags"] = tagtemplist
 		row["title"] = v.Title
 		row["summary"] = v.Summary
@@ -109,7 +110,7 @@ func (self *MainController) AjaxArticleTable(){
 		//row["category_name"] = categoryInfo.name
 		list[k] = row
 	}
-	self.ajaxList("成功", MSG_OK, count, list)
+	self.QajaxList("成功", MSG_OK, count, list)
 
 }
 

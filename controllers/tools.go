@@ -10,12 +10,12 @@ type ToolsController struct {
 }
 
 // 是否POST提交
-func (self *ToolsController) isPost() bool{
+func (self *ToolsController) QisPost() bool{
 	return self.Ctx.Request.Method == "POST"
 }
 
 // 获取用户IP地址
-func (self *ToolsController) getClientIp() string{
+func (self *ToolsController) QgetClientIp() string{
 	s := strings.Split(self.Ctx.Request.RemoteAddr, ":")
 	return s[0]
 }
@@ -27,7 +27,7 @@ func (self * ToolsController) redirect(url string){
 }
 
 
-func (self *ToolsController) ajaxMsg(msg interface{}, msgno int)  {
+func (self *ToolsController) QajaxMsg(msg interface{}, msgno int)  {
 	out := make(map[string]interface{})
 	out["status"] = msgno
 	out["message"] = msg
@@ -37,7 +37,7 @@ func (self *ToolsController) ajaxMsg(msg interface{}, msgno int)  {
 }
 
 //ajax返回 列表
-func (self *ToolsController) ajaxList(msg interface{}, msgno int, count int64, data interface{})  {
+func (self *ToolsController) QajaxList(msg interface{}, msgno int, count int64, data interface{})  {
 	out := make(map[string]interface{})
 	out["code"] = msgno
 	out["msg"] = msg

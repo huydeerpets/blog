@@ -3,6 +3,7 @@ package routers
 import (
 	"blog/controllers"
 	"github.com/astaxie/beego"
+	"blog/controllers/api"
 )
 
 func init() {
@@ -26,6 +27,19 @@ func init() {
 	beego.AutoRouter(&controllers.UserController{})
 	beego.AutoRouter(&controllers.ArticleController{})
 	beego.AutoRouter(&controllers.UploadController{})
+
+	//api
+	ns :=
+		beego.NewNamespace("/api",
+			beego.NSNamespace("/v1",
+				beego.NSRouter("/getarticle", &api.ApiarticleController{}, "get:GetArticle"),
+				beego.NSRouter("/gettaglist", &api.ApiarticleController{}, "get:GetTagList"),
+
+			),
+
+		)
+	//注册 namespace
+	beego.AddNamespace(ns)
 
 	//ns :=
 	//	beego.NewNamespace("/frontend",

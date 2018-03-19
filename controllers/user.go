@@ -42,14 +42,14 @@ func (self *UserController) AjaxSave() {
 		pwdOld := strings.TrimSpace(self.GetString("password_old"))
 		pwdOldMd5 := libs.Md5([]byte(pwdOld + Admin.Salt))
 		if Admin.Password != pwdOldMd5 {
-			self.ajaxMsg("旧密码错误", MSG_ERR)
+			self.QajaxMsg("旧密码错误", MSG_ERR)
 		}
 
 		pwdNew1 := strings.TrimSpace(self.GetString("password_new1"))
 		pwdNew2 := strings.TrimSpace(self.GetString("password_new2"))
 
 		if pwdNew1 != pwdNew2 {
-			self.ajaxMsg("两次密码不一致", MSG_ERR)
+			self.QajaxMsg("两次密码不一致", MSG_ERR)
 		}
 
 		pwd, salt := libs.Password(4, pwdNew1)
@@ -61,7 +61,7 @@ func (self *UserController) AjaxSave() {
 	Admin.Status = 1
 
 	if err := Admin.Update(); err != nil {
-		self.ajaxMsg(err.Error(), MSG_ERR)
+		self.QajaxMsg(err.Error(), MSG_ERR)
 	}
-	self.ajaxMsg("", MSG_OK)
+	self.QajaxMsg("", MSG_OK)
 }
