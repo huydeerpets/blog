@@ -7,7 +7,6 @@ import (
 	"github.com/astaxie/beego/orm"
 	"strconv"
 	"github.com/astaxie/beego"
-	"fmt"
 )
 
 var (
@@ -79,7 +78,7 @@ func (self *ArticleController) Table(){
 		//row["category_name"] = categoryInfo.name
 		list[k] = row
 	}
-	fmt.Printf("------------%#v",list)
+	//fmt.Printf("------------%#v",list)
 	self.QajaxList("成功", MSG_OK, count, list)
 }
 
@@ -238,7 +237,6 @@ func (self *ArticleController) AjaxSave(){
 	}else{
 		Article.Thumb = strings.TrimSpace(self.GetString("thumb"))
 	}
-
 	Article.Status, _ = self.GetInt("status")
 	Article.UpdateTime = time.Now().Unix()
 
