@@ -1,15 +1,15 @@
 <!-- 主体（一般只改变这里的内容） -->
-<div class="blog-body" style="padding: 0px; margin: 0px;">
+<div class="blog-body" style="margin-top: 70px;">
     <!-- 这个一般才是真正的主体内容 -->
-    <div class="blog-container">
+    <div class="blog-container" style="margin-top: 70px;">
         <div class="blog-main">
-            <blockquote class="layui-elem-quote sitemap layui-breadcrumb shadow" style="visibility: visible;">
+            <blockquote class="layui-elem-quote sitemap layui-breadcrumb shadow">
                 <a href="index.html" title="网站首页">网站首页</a>
                 <a href="article.html" title="文章专栏">文章专栏</a>
                 <a><cite class="title"></cite></a>
             </blockquote>
             <!--左边文章列表-->
-            <div class="blog-main-left animated slideInLeft">
+            <div class="blog-main-left animated slideInLeft" style="margin-top: 10px">
                 <!-- 文章内容（使用Kingeditor富文本编辑器发表的） -->
                 <div class="article-detail shadow">
                     <div class="article-detail-title title"><i class="layui-icon">&#xe609;</i>终于等来了,zuoqy博客v0.1!</a></div>
@@ -55,18 +55,11 @@
                 </div>
             </div>
             <!--右边小栏目-->
-            <div class="blog-main-right">
+            <div class="blog-main-right" style="margin-top: 10px">
                 <!--右边悬浮 平板或手机设备显示-->
                 <div class="category-toggle"><i class="fa fa-chevron-left"></i></div>
                 <!-- 分类导航 -->
-                <div class="article-category shadow">
-                    <div class="article-category-title">分类导航</div>
-                    <a href="javascript:go(1)">杂文随笔</a>
-                    <a href="javascript:go(2)">JAVA基础</a>
-                    <a href="javascript:go(3)">Web前端</a>
-                    <a href="javascript:go(4)">My Sql</a>
-                    <div class="clear"></div>
-                </div>
+
                 <div class="blog-module shadow">
                     <div class="blog-module-title">相似文章</div>
                     <ul class="fa-ul blog-module-ul">
@@ -79,12 +72,9 @@
                         <li><i class="fa-li fa fa-hand-o-right"></i><a href="detail.html">待开发</a></li>
                     </ul>
                 </div>
+                {{template "fpublic/main_right.html" }}
             </div>
         </div>
         <div class="clear"></div>
     </div>
 </div>
-
-
-<!-- 评论留言 -->
-<script src="js/message.js"></script>
