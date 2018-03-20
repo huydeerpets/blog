@@ -10,6 +10,10 @@ func init() {
 	//前台
     beego.Router("/", &controllers.MainController{}, "*:Index")
 	beego.Router("/ajaxarticletable", &controllers.MainController{}, "*:AjaxArticleTable")
+	//文章列表
+	beego.Router("/farticle", &controllers.MainController{}, "*:Article")
+	//文章详情页
+	beego.Router("/fdetail", &controllers.MainController{}, "*:Detail")
 	//beego.AutoRouter(&controllers.MainController{})
 
     //后台
@@ -34,7 +38,8 @@ func init() {
 			beego.NSNamespace("/v1",
 				beego.NSRouter("/getarticle", &api.ApiarticleController{}, "get:GetArticle"),
 				beego.NSRouter("/gettaglist", &api.ApiarticleController{}, "get:GetTagList"),
-
+				//hot top列表
+				beego.NSRouter("/getranklist", &api.ApiarticleController{}, "get:GetRankList"),
 			),
 
 		)

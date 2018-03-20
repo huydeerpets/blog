@@ -1,8 +1,3 @@
-{{template "fpublic/header.html" }}
-<body>
-<!-- 导航 -->
-{{template "fpublic/nav.html" }}
-
 <!-- 主体（一般只改变这里的内容） -->
 <div class="blog-body">
     <div class="layui-carousel blog-bg" id="carousel">
@@ -20,7 +15,7 @@
             <div class="home-tips shadow">
                 <i style="float:left;line-height:17px;" class="fa fa-volume-up"></i>
                 <div class="home-tips-container">
-                    <span style="color: red">每天学习一点点，进步一点点，不要多，多了扯到蛋</span>
+                    <span style="color: red">每天学习一点点，进步一点点，不要多，多了扯到蛋{{.pageAction}}{{.loginUserName}}</span>
                     <span style="color: #009688">哈哈，这是公告、这是公告、这是公告。</span>
                 </div>
             </div>
@@ -70,12 +65,5 @@
     </div>
 </div>
 
-<!-- 底部 -->
-{{template "fpublic/footer.html" }}
-
-{{template "fpublic/tool.html" }}
-
 <!-- 本页脚本 -->
 <script src="/static/frontend/js/index.js"></script>
-</body>
-</html>

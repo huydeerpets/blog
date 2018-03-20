@@ -3,7 +3,6 @@ package controllers
 import (
 	"strings"
 	"blog/models"
-	//"strconv"
 	"strconv"
 	"blog/libs"
 )
@@ -11,25 +10,69 @@ import (
 type MainController struct {
 	ToolsController
 }
-
 //首页
 func (self *MainController) Index() {
+	self.Data["pageAction"] = "index"
+	self.Data["pageTitle"] = "首页"
+	self.Layout = "fpublic/layout.html"
 	self.TplName = "default/index.html"
 }
 
 //文章列表
 func (self *MainController) Article(){
-
+	tag, _ := self.GetInt("tag")
+	self.Data["pageAction"] = "article"
+	self.Data["pageTag"] = tag
+	self.Data["pageTitle"] = "文章列表"
+	self.Layout = "fpublic/layout.html"
 	self.TplName = "default/article.html"
+}
+
+func (self *MainController) Detail()  {
+	self.Data["DetailCss"] = true
+	self.Data["pageTitle"] = "详情页"
+	self.Data["pageAction"] = "detail"
+
+	//article_id, _ := self.GetInt("id")
+	//Article, _ := models.ArticleGetById(article_id)
+	//ArticleContent, _ := models.ArticleContentGetById(article_id)
+	//row := make(map[string]interface{})
+	//row["id"] = Article.Id
+	//row["title"] = Article.Title
+	//row["summary"] = Article.Summary
+	//row["thumb"] = Article.Thumb
+	//row["status"] = Article.Status
+	//row["p_sort"] = Article.PSort
+	//row["author_name"] = Article.AuthorName
+	//row["san_count"] = Article.ScanCount
+	//row["comment_count"] = Article.CommentCount
+	//row["is_recommend"] = Article.IsRecommend
+	//row["is_top"] = Article.IsTop
+	//row["is_hot"] = Article.IsHot
+	//row["create_time"] = beego.Date(time.Unix(Article.CreateTime, 0), "Y-m-d H:i:s")
+	//row["update_time"] = beego.Date(time.Unix(Article.UpdateTime, 0), "Y-m-d H:i:s")
+	////categoryInfo := getCategoryInfo(categoryList, v.CategoryId)
+	////row["category_name"] = categoryInfo.name
+	//
+	//self.Data["articleContent"] = ArticleContent
+	//self.Data["data"] = row
+
+	self.Layout = "fpublic/layout.html"
+	self.TplName = "default/detail.html"
 }
 
 //时间墙
 func (self *MainController) Timeline(){
+	tag, _ := self.GetInt("tag")
+	self.Data["pageTag"] = tag
+	self.Data["pageAction"] = "timeline"
+	self.Layout = "fpublic/layout.html"
 	self.TplName = "default/timeline.html"
 }
 
 //关于
 func (self *MainController) About(){
+	self.Data["pageAction"] = "about"
 	self.TplName = "default/about.html"
 }
 
@@ -52,12 +95,16 @@ func (self *MainController) AjaxArticleTable(){
 		limit = 30
 	}
 
+	tag, err := self.GetInt("tag")
+	if err != nil{
+		tag = 0
+	}
+
 	//获取taglist
 	tagList := models.TagGetList()
 
 	//查询条件
 	title := strings.TrimSpace(self.GetString("title"))
-	tag := strings.TrimSpace(self.GetString("tag"))
 
 	filters := make([]interface{}, 0)
 
@@ -66,7 +113,7 @@ func (self *MainController) AjaxArticleTable(){
 	if title != ""{
 		filters = append(filters, "title__icontains", title)
 	}
-	if tag != ""{
+	if tag != 0{
 		filters = append(filters, "tags__icontains", tag)
 	}
 
