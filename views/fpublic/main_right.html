@@ -60,13 +60,14 @@
             if (res.code==0) {
                 var tophtml = '';
                 var hothtml = '';
+
                 for (var i=0; i<res.data.recommendlist.length; i++) {
                     tophtml += '<li><i class="layui-badge-rim '+bgcolor[(i)]+'">'+(i+1)+'</i>&nbsp;&nbsp;' +
-                            '<a href="./farticle?id="'+res.data.recommendlist[i]['Id']+'>'+res.data.recommendlist[i]['Title']+'</a></li>';
+                            '<a href="./fdetail?id='+res.data.recommendlist[i]['Id']+'">'+res.data.recommendlist[i]['Title']+'</a></li>';
                 }
                 for (var i=0; i<res.data.hotlist.length; i++) {
                     hothtml += '<li><i class="layui-badge-rim '+bgcolor[(i)]+'">'+(i+1)+'</i>&nbsp;&nbsp;' +
-                            '<a href="./farticle?id="'+res.data.hotlist[i]['Id']+'>'+res.data.hotlist[i]['Title']+'</a></li>';
+                            '<a href="./fdetail?id='+res.data.hotlist[i]['Id']+'">'+res.data.hotlist[i]['Title']+'</a></li>';
 
                 }
                 $('#recommendlist').append(tophtml);

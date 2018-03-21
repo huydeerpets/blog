@@ -5,6 +5,8 @@ import (
 	"blog/models"
 	"strconv"
 	"blog/libs"
+	"github.com/astaxie/beego"
+	"time"
 )
 
 type MainController struct {
@@ -29,33 +31,33 @@ func (self *MainController) Article(){
 }
 
 func (self *MainController) Detail()  {
-	self.Data["DetailCss"] = true
+	self.Data["Detail"] = true
 	self.Data["pageTitle"] = "详情页"
 	self.Data["pageAction"] = "detail"
 
-	//article_id, _ := self.GetInt("id")
-	//Article, _ := models.ArticleGetById(article_id)
-	//ArticleContent, _ := models.ArticleContentGetById(article_id)
-	//row := make(map[string]interface{})
-	//row["id"] = Article.Id
-	//row["title"] = Article.Title
-	//row["summary"] = Article.Summary
-	//row["thumb"] = Article.Thumb
-	//row["status"] = Article.Status
-	//row["p_sort"] = Article.PSort
-	//row["author_name"] = Article.AuthorName
-	//row["san_count"] = Article.ScanCount
-	//row["comment_count"] = Article.CommentCount
-	//row["is_recommend"] = Article.IsRecommend
-	//row["is_top"] = Article.IsTop
-	//row["is_hot"] = Article.IsHot
-	//row["create_time"] = beego.Date(time.Unix(Article.CreateTime, 0), "Y-m-d H:i:s")
-	//row["update_time"] = beego.Date(time.Unix(Article.UpdateTime, 0), "Y-m-d H:i:s")
-	////categoryInfo := getCategoryInfo(categoryList, v.CategoryId)
-	////row["category_name"] = categoryInfo.name
-	//
-	//self.Data["articleContent"] = ArticleContent
-	//self.Data["data"] = row
+	article_id, _ := self.GetInt("id")
+	Article, _ := models.ArticleGetById(article_id)
+	ArticleContent, _ := models.ArticleContentGetById(article_id)
+	row := make(map[string]interface{})
+	row["id"] = Article.Id
+	row["title"] = Article.Title
+	row["summary"] = Article.Summary
+	row["thumb"] = Article.Thumb
+	row["status"] = Article.Status
+	row["p_sort"] = Article.PSort
+	row["author_name"] = Article.AuthorName
+	row["san_count"] = Article.ScanCount
+	row["comment_count"] = Article.CommentCount
+	row["is_recommend"] = Article.IsRecommend
+	row["is_top"] = Article.IsTop
+	row["is_hot"] = Article.IsHot
+	row["create_time"] = beego.Date(time.Unix(Article.CreateTime, 0), "Y-m-d H:i:s")
+	row["update_time"] = beego.Date(time.Unix(Article.UpdateTime, 0), "Y-m-d H:i:s")
+	//categoryInfo := getCategoryInfo(categoryList, v.CategoryId)
+	//row["category_name"] = categoryInfo.name
+
+	self.Data["articleContent"] = ArticleContent
+	self.Data["data"] = row
 
 	self.Layout = "fpublic/layout.html"
 	self.TplName = "default/detail.html"
