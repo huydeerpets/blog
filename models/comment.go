@@ -5,14 +5,14 @@ import "github.com/astaxie/beego/orm"
 type Comment struct {
 	Id int
 	ArticleId int
-	AdminId int
+	UserId int
 	ReplyTo int
-	NickName string
-	Email string
+	Nickname string
 	Content string
 	Status int
-	CreateTime int
-	UpdateTime int
+	LikeCount int
+	CreateTime int64
+	UpdateTime int64
 }
 
 func (c *Comment) TableName() string {
@@ -33,3 +33,4 @@ func  GetCommentByArticleId(page, pageSize int, filters ...interface{}) ([]*Comm
 	query.OrderBy("-id").Limit(pageSize, offset).All(&list)
 	return list, total
 }
+

@@ -7,6 +7,7 @@ import (
 )
 
 func init() {
+
 	//前台
     beego.Router("/", &controllers.MainController{}, "*:Index")
 	beego.Router("/ajaxarticletable", &controllers.MainController{}, "*:AjaxArticleTable")
@@ -40,6 +41,11 @@ func init() {
 				beego.NSRouter("/gettaglist", &api.ApiarticleController{}, "get:GetTagList"),
 				//hot top列表
 				beego.NSRouter("/getranklist", &api.ApiarticleController{}, "get:GetRankList"),
+
+				//留言列表
+				beego.NSRouter("/getcomment", &api.ApicommentController{}, "get:GetComment"),
+				//留言
+				beego.NSRouter("/postcomment", &api.ApicommentController{}, "post:PostComment"),
 			),
 
 		)
