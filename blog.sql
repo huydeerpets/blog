@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2018-03-13 17:27:31
+Date: 2018-03-23 08:47:06
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -37,25 +37,27 @@ CREATE TABLE `qq_article` (
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of qq_article
 -- ----------------------------
-INSERT INTO `qq_article` VALUES ('1', '1,10,11,2', '测试文章', '简介', '', '1', '0', '1', '超级管理员', '0', '0', '2', '2', '1', '1520759229', '1520759229');
-INSERT INTO `qq_article` VALUES ('2', '2,12,13,15', '测试2', '测试2', '', '1', '0', '1', '超级管理员', '0', '0', '1', '2', '1', '1520763226', '1520763226');
-INSERT INTO `qq_article` VALUES ('3', '2,1', '13', '13', '', '3', '0', '1', '超级管理员', '0', '0', '1', '2', '1', '1520764344', '1520764344');
-INSERT INTO `qq_article` VALUES ('4', '1,12', '42', '234', '', '1', '0', '1', '超级管理员', '0', '0', '1', '2', '1', '1520764677', '1520764677');
-INSERT INTO `qq_article` VALUES ('5', '1', '13', '132', '', '1', '0', '1', '超级管理员', '0', '0', '1', '2', '1', '1520764710', '1520764710');
-INSERT INTO `qq_article` VALUES ('6', '1,12', '132', '312', '', '1', '0', '1', '超级管理员', '0', '0', '1', '2', '1', '1520764745', '1520764745');
-INSERT INTO `qq_article` VALUES ('7', '1,12', '123', '13', '2018-3/11/15207653139828439648674665223082153551_l.jpg', '1', '0', '1', '超级管理员', '0', '0', '1', '2', '1', '1520765341', '1520765341');
-INSERT INTO `qq_article` VALUES ('8', '13,14', '123', '123', '2018-3/12/15208252436960634006129484611666145821_l.jpg', '1', '0', '1', '超级管理员', '0', '0', '1', '2', '1', '1520825247', '1520825247');
+INSERT INTO `qq_article` VALUES ('1', '1,10,11,2', '测试文章', '简介', 'http://localhost:7474/./upload/img/2018-3/12/15208265324742175005577006791947779410_l.jpg', '1', '0', '1', '超级管理员', '0', '0', '2', '2', '2', '1520759229', '1520759229');
+INSERT INTO `qq_article` VALUES ('2', '2,12,13,15', '测试2', '测试2', 'http://localhost:7474/./upload/img/2018-3/12/15208265324742175005577006791947779410_l.jpg', '1', '0', '1', '超级管理员', '0', '0', '1', '2', '1', '1520763226', '1520763226');
+INSERT INTO `qq_article` VALUES ('3', '2,1', '13', '13', 'http://localhost:7474/./upload/img/2018-3/12/15208265324742175005577006791947779410_l.jpg', '3', '0', '1', '超级管理员', '0', '0', '1', '2', '1', '1520764344', '1520764344');
+INSERT INTO `qq_article` VALUES ('4', '1,12', '42', '234', 'http://localhost:7474/./upload/img/2018-3/12/15208265324742175005577006791947779410_l.jpg', '1', '0', '1', '超级管理员', '0', '0', '1', '2', '1', '1520764677', '1520764677');
+INSERT INTO `qq_article` VALUES ('5', '1', '13', '132', 'http://localhost:7474/./upload/img/2018-3/12/15208265324742175005577006791947779410_l.jpg', '1', '0', '1', '超级管理员', '0', '0', '1', '2', '1', '1520764710', '1520764710');
+INSERT INTO `qq_article` VALUES ('6', '1,12', '132', '312', 'http://localhost:7474/./upload/img/2018-3/12/15208265324742175005577006791947779410_l.jpg', '1', '0', '1', '超级管理员', '0', '0', '1', '2', '1', '1520764745', '1520764745');
+INSERT INTO `qq_article` VALUES ('7', '1,12', '123', '13', 'http://localhost:7474/./upload/img/2018-3/12/15208265324742175005577006791947779410_l.jpg', '1', '0', '1', '超级管理员', '0', '0', '2', '2', '2', '1520765341', '1520765341');
+INSERT INTO `qq_article` VALUES ('8', '13,14', '123', '123', 'http://localhost:7474/./upload/img/2018-3/12/15208265324742175005577006791947779410_l.jpg', '1', '0', '1', '超级管理员', '0', '0', '2', '2', '2', '1520825247', '1520825247');
 INSERT INTO `qq_article` VALUES ('9', '13,14', '123', '123', 'http://localhost:7474/./upload/img/2018-3/12/15208252436960634006129484611666145821_l.jpg', '0', '0', '1', '超级管理员', '0', '0', '2', '2', '1', '1520825584', '1520825584');
 INSERT INTO `qq_article` VALUES ('10', '1,13,15,2', '测试', '测试', 'http://localhost:7474/./upload/img/2018-3/12/15208265324742175005577006791947779410_l.jpg', '1', '0', '1', '超级管理员', '0', '0', '1', '2', '1', '1520826533', '1520826533');
 INSERT INTO `qq_article` VALUES ('11', '14,2', '123', '132', 'http://localhost:7474/./static/upload/img/2018-3/12/15208266371820137005577006791947779410_l.jpg', '1', '0', '1', '超级管理员', '0', '0', '1', '2', '1', '1520826638', '1520826638');
-INSERT INTO `qq_article` VALUES ('12', '', '123', '132', 'http://localhost:7474/./static/upload/img/', '1', '0', '1', '超级管理员', '0', '0', '0', '0', '0', '1520909145', '1520909145');
-INSERT INTO `qq_article` VALUES ('13', '', '123', '132', 'http://localhost:7474/./static/upload/img/2018-3/13/15209185419624387008674665223082153551_l.png', '1', '0', '1', '超级管理员', '0', '0', '0', '0', '0', '1520918543', '1520918543');
-INSERT INTO `qq_article` VALUES ('14', '', '123', '132', 'http://localhost:7474/./static/upload/img/2018-3/13/15209185588945888006129484611666145821_l.jpg', '1', '0', '1', '超级管理员', '0', '0', '0', '0', '0', '1520918559', '1520918559');
+INSERT INTO `qq_article` VALUES ('12', '1,10,11,2', '123', '132', 'http://localhost:7474/./upload/img/2018-3/12/15208265324742175005577006791947779410_l.jpg', '1', '0', '1', '超级管理员', '0', '0', '0', '0', '0', '1520909145', '1520909145');
+INSERT INTO `qq_article` VALUES ('13', '1,10,11,2', '123', '132', 'http://localhost:7474/./static/upload/img/2018-3/13/15209185419624387008674665223082153551_l.png', '1', '0', '1', '超级管理员', '0', '0', '0', '0', '0', '1520918543', '1520918543');
+INSERT INTO `qq_article` VALUES ('14', '1,10,11,2', '123', '132', 'http://localhost:7474/./static/upload/img/2018-3/13/15209185588945888006129484611666145821_l.jpg', '1', '0', '1', '超级管理员', '0', '0', '0', '0', '0', '1520918559', '1520918559');
+INSERT INTO `qq_article` VALUES ('15', '', '123', '132', 'http://localhost:7474/./static/upload/img/2018-3/13/15209185588945888006129484611666145821_l.jpg', '1', '0', '1', '超级管理员', '0', '0', '0', '0', '0', '1521468513', '1521468513');
+INSERT INTO `qq_article` VALUES ('16', '', '123', '132', 'http://localhost:7474/./static/upload/img/2018-3/13/15209185588945888006129484611666145821_l.jpg', '1', '0', '1', '超级管理员', '0', '0', '0', '0', '0', '1521469042', '1521469042');
 
 -- ----------------------------
 -- Table structure for qq_article_content
@@ -66,7 +68,7 @@ CREATE TABLE `qq_article_content` (
   `article_id` int(11) unsigned DEFAULT NULL,
   `content` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of qq_article_content
@@ -85,6 +87,8 @@ INSERT INTO `qq_article_content` VALUES ('11', '11', '213');
 INSERT INTO `qq_article_content` VALUES ('12', '12', '#### 请求头：\n\n|参数名|是否必须|类型|说明|\n|:----    |:---|:----- |-----   |\n|Content-Type |是  |string |请求类型： application/json   |\n|Content-MD5 |是  |string | 请求内容签名    |\n\n\n#### 请求参数:\n\n|参数名|是否必须|类型|说明|示例值\n|:----    |:---|:----- |-----   |-----   |\n|username |是  |string |用户名   | george518\n|password |是  |string | 密码    | george518\n\n#### 返回参数:\n\n|参数名|类型|说明|\n|:-----  |:-----|-----                           |\n|group_level |int   |用户组id，1：超级管理员；2：普通用户  |\n\n#### 返回示例:\n\n**正确时返回:**\n\n```\n{\n\"status\": 200,\n\"message\": \"Success\",\n\"data\": {\n    \"uid\": \"1\",\n    \"account\": \"admin\",\n    \"nickname\": \"Minho\",\n    \"group_level\": 0 ,\n    \"create_time\": \"1436864169\",\n    \"last_login_time\": \"0\",\n}\n}\n```\n\n**错误时返回:**\n\n\n```\n{\n\"status\": 300,\n\"message\": \"invalid username\"\n\"data\":{\n    \n}\n}\n```\n\n#### 调用示例:\n\n```\n\n<?php\n    echo \"Hello world\";\n```\n#### 备注:\n\n- 更多返回错误代码请看首页的错误代码描述');
 INSERT INTO `qq_article_content` VALUES ('13', '13', '#### 请求头：\n\n|参数名|是否必须|类型|说明|\n|:----    |:---|:----- |-----   |\n|Content-Type |是  |string |请求类型： application/json   |\n|Content-MD5 |是  |string | 请求内容签名    |\n\n\n#### 请求参数:\n\n|参数名|是否必须|类型|说明|示例值\n|:----    |:---|:----- |-----   |-----   |\n|username |是  |string |用户名   | george518\n|password |是  |string | 密码    | george518\n\n#### 返回参数:\n\n|参数名|类型|说明|\n|:-----  |:-----|-----                           |\n|group_level |int   |用户组id，1：超级管理员；2：普通用户  |\n\n#### 返回示例:\n\n**正确时返回:**\n\n```\n{\n\"status\": 200,\n\"message\": \"Success\",\n\"data\": {\n    \"uid\": \"1\",\n    \"account\": \"admin\",\n    \"nickname\": \"Minho\",\n    \"group_level\": 0 ,\n    \"create_time\": \"1436864169\",\n    \"last_login_time\": \"0\",\n}\n}\n```\n\n**错误时返回:**\n\n\n```\n{\n\"status\": 300,\n\"message\": \"invalid username\"\n\"data\":{\n    \n}\n}\n```\n\n#### 调用示例:\n\n```\n\n<?php\n    echo \"Hello world\";\n```\n#### 备注:\n\n- 更多返回错误代码请看首页的错误代码描述');
 INSERT INTO `qq_article_content` VALUES ('14', '14', '#### 请求头：\n\n|参数名|是否必须|类型|说明|\n|:----    |:---|:----- |-----   |\n|Content-Type |是  |string |请求类型： application/json   |\n|Content-MD5 |是  |string | 请求内容签名    |\n\n\n#### 请求参数:\n\n|参数名|是否必须|类型|说明|示例值\n|:----    |:---|:----- |-----   |-----   |\n|username |是  |string |用户名   | george518\n|password |是  |string | 密码    | george518\n\n#### 返回参数:\n\n|参数名|类型|说明|\n|:-----  |:-----|-----                           |\n|group_level |int   |用户组id，1：超级管理员；2：普通用户  |\n\n#### 返回示例:\n\n**正确时返回:**\n\n```\n{\n\"status\": 200,\n\"message\": \"Success\",\n\"data\": {\n    \"uid\": \"1\",\n    \"account\": \"admin\",\n    \"nickname\": \"Minho\",\n    \"group_level\": 0 ,\n    \"create_time\": \"1436864169\",\n    \"last_login_time\": \"0\",\n}\n}\n```\n\n**错误时返回:**\n\n\n```\n{\n\"status\": 300,\n\"message\": \"invalid username\"\n\"data\":{\n    \n}\n}\n```\n\n#### 调用示例:\n\n```\n\n<?php\n    echo \"Hello world\";\n```\n#### 备注:\n\n- 更多返回错误代码请看首页的错误代码描述');
+INSERT INTO `qq_article_content` VALUES ('15', '15', '#### 请求头：\n\n|参数名|是否必须|类型|说明|\n|:----    |:---|:----- |-----   |\n|Content-Type |是  |string |请求类型： application/json   |\n|Content-MD5 |是  |string | 请求内容签名    |\n\n\n#### 请求参数:\n\n|参数名|是否必须|类型|说明|示例值\n|:----    |:---|:----- |-----   |-----   |\n|username |是  |string |用户名   | george518\n|password |是  |string | 密码    | george518\n\n#### 返回参数:\n\n|参数名|类型|说明|\n|:-----  |:-----|-----                           |\n|group_level |int   |用户组id，1：超级管理员；2：普通用户  |\n\n#### 返回示例:\n\n**正确时返回:**\n\n```\n{\n\"status\": 200,\n\"message\": \"Success\",\n\"data\": {\n    \"uid\": \"1\",\n    \"account\": \"admin\",\n    \"nickname\": \"Minho\",\n    \"group_level\": 0 ,\n    \"create_time\": \"1436864169\",\n    \"last_login_time\": \"0\",\n}\n}\n```\n\n**错误时返回:**\n\n\n```\n{\n\"status\": 300,\n\"message\": \"invalid username\"\n\"data\":{\n    \n}\n}\n```\n\n#### 调用示例:\n\n```\n\n<?php\n    echo \"Hello world\";\n```\n#### 备注:\n\n- 更多返回错误代码请看首页的错误代码描述');
+INSERT INTO `qq_article_content` VALUES ('16', '16', '#### 请求头：\n\n|参数名|是否必须|类型|说明|\n|:----    |:---|:----- |-----   |\n|Content-Type |是  |string |请求类型： application/json   |\n|Content-MD5 |是  |string | 请求内容签名    |\n\n\n#### 请求参数:\n\n|参数名|是否必须|类型|说明|示例值\n|:----    |:---|:----- |-----   |-----   |\n|username |是  |string |用户名   | george518\n|password |是  |string | 密码    | george518\n\n#### 返回参数:\n\n|参数名|类型|说明|\n|:-----  |:-----|-----                           |\n|group_level |int   |用户组id，1：超级管理员；2：普通用户  |\n\n#### 返回示例:\n\n**正确时返回:**\n\n```\n{\n\"status\": 200,\n\"message\": \"Success\",\n\"data\": {\n    \"uid\": \"1\",\n    \"account\": \"admin\",\n    \"nickname\": \"Minho\",\n    \"group_level\": 0 ,\n    \"create_time\": \"1436864169\",\n    \"last_login_time\": \"0\",\n}\n}\n```\n\n**错误时返回:**\n\n\n```\n{\n\"status\": 300,\n\"message\": \"invalid username\"\n\"data\":{\n    \n}\n}\n```\n\n#### 调用示例:\n\n```\n\n<?php\n    echo \"Hello world\";\n```\n#### 备注:\n\n- 更多返回错误代码请看首页的错误代码描述');
 
 -- ----------------------------
 -- Table structure for qq_comment
@@ -93,20 +97,44 @@ DROP TABLE IF EXISTS `qq_comment`;
 CREATE TABLE `qq_comment` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `article_id` int(11) unsigned DEFAULT NULL,
-  `admin_id` int(11) unsigned DEFAULT NULL,
+  `user_id` int(11) unsigned DEFAULT NULL,
   `reply_to` int(11) unsigned DEFAULT '0',
   `nickname` varchar(50) DEFAULT NULL,
-  `email` varchar(50) DEFAULT NULL,
   `content` varchar(255) DEFAULT NULL,
-  `status` tinyint(1) DEFAULT NULL,
+  `like_count` int(11) DEFAULT NULL,
+  `status` tinyint(1) DEFAULT '0' COMMENT '点赞',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of qq_comment
 -- ----------------------------
+INSERT INTO `qq_comment` VALUES ('1', '0', '0', '0', '', '', '0', '0', '0', '0');
+INSERT INTO `qq_comment` VALUES ('2', '10', '0', '0', '', '', '0', '0', '0', '0');
+INSERT INTO `qq_comment` VALUES ('3', '10', '0', '2', '', '1', '0', '0', '0', '0');
+INSERT INTO `qq_comment` VALUES ('4', '10', '0', '2', '', '2', '0', '0', '0', '0');
+INSERT INTO `qq_comment` VALUES ('5', '10', '3', '2', '', '3', '0', '0', '0', '0');
+INSERT INTO `qq_comment` VALUES ('6', '10', '3', '2', '', '4', '0', '0', '0', '0');
+INSERT INTO `qq_comment` VALUES ('7', '10', '3', '2', '', 'qwe5', '0', '0', '0', '0');
+INSERT INTO `qq_comment` VALUES ('8', '10', '3', '2', '', 'qwe6', '0', '0', '0', '0');
+INSERT INTO `qq_comment` VALUES ('9', '10', '3', '2', '', 'qwe7', '0', '0', '0', '0');
+INSERT INTO `qq_comment` VALUES ('10', '10', '3', '2', '', 'qwe8', '0', '0', '1521702312', '0');
+INSERT INTO `qq_comment` VALUES ('11', '9', '0', '0', '', '123', '0', '0', '1521702900', '0');
+INSERT INTO `qq_comment` VALUES ('12', '9', '0', '0', '', '123', '0', '0', '1521702926', '0');
+INSERT INTO `qq_comment` VALUES ('13', '9', '0', '0', '', '123', '0', '0', '1521702940', '0');
+INSERT INTO `qq_comment` VALUES ('14', '10', '0', '2', '', '123123123213qweqe', '0', '0', '1521707319', '0');
+INSERT INTO `qq_comment` VALUES ('15', '2', '0', '0', '', '13', '0', '0', '1521707346', '0');
+INSERT INTO `qq_comment` VALUES ('16', '2', '0', '15', '', '123', '0', '0', '1521707511', '0');
+INSERT INTO `qq_comment` VALUES ('17', '2', '0', '0', '', '123', '0', '0', '1521707524', '0');
+INSERT INTO `qq_comment` VALUES ('18', '16', '0', '0', '', '123', '0', '0', '1521708717', '0');
+INSERT INTO `qq_comment` VALUES ('19', '16', '0', '18', '', '123', '0', '0', '1521708722', '0');
+INSERT INTO `qq_comment` VALUES ('20', '16', '0', '18', '', '123', '0', '0', '1521708724', '0');
+INSERT INTO `qq_comment` VALUES ('21', '16', '0', '0', '', '1', '0', '0', '1521708971', '0');
+INSERT INTO `qq_comment` VALUES ('22', '16', '0', '0', '', '123', '0', '0', '1521708975', '0');
+INSERT INTO `qq_comment` VALUES ('23', '16', '0', '0', '', '213123', '0', '0', '1521708978', '0');
+INSERT INTO `qq_comment` VALUES ('24', '16', '0', '0', '', '123123', '0', '0', '1521708982', '0');
 
 -- ----------------------------
 -- Table structure for qq_tag
@@ -164,7 +192,7 @@ CREATE TABLE `qq_uc_admin` (
 -- ----------------------------
 -- Records of qq_uc_admin
 -- ----------------------------
-INSERT INTO `qq_uc_admin` VALUES ('1', 'admin', '超级管理员', 'bd730f3fa72d868a843a832e9f4bdead', '0', '13888888889', 'haodaquan2008@163.com', 'AmQX', '1520929852', '192.168.4.144', '1', '0', '1', '0', '1520610229');
+INSERT INTO `qq_uc_admin` VALUES ('1', 'admin', '超级管理员', 'bd730f3fa72d868a843a832e9f4bdead', '0', '13888888889', 'haodaquan2008@163.com', 'AmQX', '1521527041', '[', '1', '0', '1', '0', '1520610229');
 INSERT INTO `qq_uc_admin` VALUES ('2', 'george518', 'georgeHao', 'e5d77ebaffd5e4fe7164b31c6d7f1921', '1,2', '13811558899', '12@11.com', 'ONNy', '1506125048', '127.0.0.1', '0', '0', '0', '0', '1515116737');
 INSERT INTO `qq_uc_admin` VALUES ('3', 'haodaquan', '郝大全', 'e9fa9187e7497892c237433aee966cc1', '2,1', '13811559988', 'hao@123.com', '6fWE', '1505960085', '127.0.0.1', '1', '1', '0', '1505919245', '1513388240');
 INSERT INTO `qq_uc_admin` VALUES ('4', 'ceshizhanghao', '测试姓名', 'fa3fb5825c2e64bc764f29245dd1ec7a', '2', '13988009988', '232@124.com', 'i8Nf', '0', '', '1', '1', '0', '1506047337', '1513388111');
