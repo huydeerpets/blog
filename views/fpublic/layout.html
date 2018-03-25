@@ -4,7 +4,7 @@
     <meta http-equiv="Content-Type" content="text/html; Charset=utf-8">
     <meta http-equiv="Content-Language" content="zh-CN">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <title>{{.pageTitle}}</title>
+    <title>七学博客|{{.pageTitle}}</title>
     <link rel="shortcut icon" href="/static/frontend/images/logo.png" type="image/x-icon">
     <!--Layui-->
     <link href="/static/layui/css/layui.css" rel="stylesheet" />
@@ -16,9 +16,18 @@
     <!-- 本页样式表 -->
     <link href="/static/frontend/css/index.css" rel="stylesheet" />
 
+{{if .TimeLine}}
+    <link href="/static/frontend/css/timeline.css" rel="stylesheet" />
+{{end}}
+
 {{if .Detail}}
     <link href="/static/frontend/css/detail.css" rel="stylesheet" />
 {{end}}
+
+{{if .About}}
+    <link href="/static/frontend/css/about.css" rel="stylesheet" />
+{{end}}
+
     <!-- layui.js -->
     <script src="/static/layui/layui.js"></script>
     <!-- 全局脚本 -->
@@ -29,6 +38,11 @@
 {{if .Detail}}
     <script src="/static/frontend/js/message.js"></script>
 {{end}}
+
+{{/*{{if .TimeLine}}*/}}
+    {{/*<script src="/static/frontend/js/timeline.js"></script>*/}}
+{{/*{{end}}*/}}
+
 
 </head>
 <body>
@@ -48,14 +62,14 @@
             <li class="layui-nav-item  {{if eq .pageAction "article" "detail"}}layui-this{{end}} " >
                 <a href="farticle"><i class="fa fa-file-text fa-fw"></i>&nbsp;文章专栏</a>
             </li>
-            <li class="layui-nav-item  {{if eq .pageAction "timeline"}}layui-this{{end}}">
-                <a href="mixed_pic.html"><i class="fa fa-paper-plane-o fa-fw"></i>&nbsp;杂七杂八</a>
-            </li>
             <li class="layui-nav-item  {{if eq .pageAction ""}}layui-this{{end}}">
-                <a href="timeline.html"><i class="fa fa-hourglass-half fa-fw"></i>&nbsp;点点滴滴</a>
+                <a href="#"><i class="fa fa-paper-plane-o fa-fw"></i>&nbsp;杂七杂八</a>
+            </li>
+            <li class="layui-nav-item  {{if eq .pageAction "timeline"}}layui-this{{end}}">
+                <a href="ftimeline"><i class="fa fa-hourglass-half fa-fw"></i>&nbsp;点点滴滴</a>
             </li>
             <li class="layui-nav-item  {{if eq .pageAction "about"}}layui-this{{end}}">
-                <a href="about.html"><i class="fa fa-info fa-fw"></i>&nbsp;关于本站</a>
+                <a href="fabout"><i class="fa fa-info fa-fw"></i>&nbsp;关于本站</a>
             </li>
         </ul>
         <!-- 手机和平板的导航开关 -->

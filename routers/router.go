@@ -15,6 +15,8 @@ func init() {
 	beego.Router("/farticle", &controllers.MainController{}, "*:Article")
 	//文章详情页
 	beego.Router("/fdetail", &controllers.MainController{}, "*:Detail")
+	beego.Router("/ftimeline", &controllers.MainController{}, "*:Timeline")
+	beego.Router("/fabout", &controllers.MainController{}, "*:About")
 	//beego.AutoRouter(&controllers.MainController{})
 
     //后台

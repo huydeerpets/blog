@@ -65,16 +65,27 @@ func (self *MainController) Detail()  {
 
 //时间墙
 func (self *MainController) Timeline(){
+	self.Data["TimeLine"] = true
+	self.Data["pageTitle"] = "时光轴"
+	self.Data["pageAction"] = "timeline"
+
 	tag, _ := self.GetInt("tag")
 	self.Data["pageTag"] = tag
-	self.Data["pageAction"] = "timeline"
 	self.Layout = "fpublic/layout.html"
 	self.TplName = "default/timeline.html"
 }
 
+//杂七杂八
+func (self *MainController) MixedWork(){
+	self.TplName = "default/mixed_work.html"
+}
+
 //关于
 func (self *MainController) About(){
+	self.Data["About"] = true
+	self.Data["pageTitle"] = "关于"
 	self.Data["pageAction"] = "about"
+	self.Layout = "fpublic/layout.html"
 	self.TplName = "default/about.html"
 }
 
