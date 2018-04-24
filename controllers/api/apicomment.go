@@ -80,6 +80,7 @@ func (self *ApicommentController) PostComment(){
 	mc.Content = content
 	mc.UserId = user_id
 	mc.ReplyTo = replay_to
+	mc.LikeCount = 0
 	mc.CreateTime = time.Now().Unix()
 	_, err = orm.NewOrm().Insert(mc)
 	//if replay_to != 0 && err == nil {
