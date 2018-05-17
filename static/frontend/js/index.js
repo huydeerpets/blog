@@ -61,7 +61,7 @@
                                 }
                             }
 
-                            head +=  '<span class="article-viewinfo"><i class="fa fa-eye"></i>&nbsp;'+arts[i].san_count+'</span>'+
+                            head +=  '<span class="article-viewinfo"><i class="fa fa-eye"></i>&nbsp;'+arts[i].scan_count+'</span>'+
                                 '<span class="article-viewinfo"><i class="fa fa-commenting"></i>&nbsp;'+arts[i].comment_count+'</span>'+
                                 '</div>'+
                                 '</div>';

@@ -46,7 +46,7 @@ func (self *MainController) Detail()  {
 	row["status"] = Article.Status
 	row["p_sort"] = Article.PSort
 	row["author_name"] = Article.AuthorName
-	row["san_count"] = Article.ScanCount
+	row["scan_count"] = Article.ScanCount
 	row["comment_count"] = Article.CommentCount
 	row["is_recommend"] = Article.IsRecommend
 	row["is_top"] = Article.IsTop
@@ -55,6 +55,9 @@ func (self *MainController) Detail()  {
 	row["update_time"] = beego.Date(time.Unix(Article.UpdateTime, 0), "Y-m-d H:i:s")
 	//categoryInfo := getCategoryInfo(categoryList, v.CategoryId)
 	//row["category_name"] = categoryInfo.name
+
+	//浏览量+1
+	models.Regulate("article", "scan_count", 1, "`Id`=?", article_id)
 
 	self.Data["articleContent"] = ArticleContent
 	self.Data["data"] = row
@@ -159,7 +162,7 @@ func (self *MainController) AjaxArticleTable(){
 		row["thumb"] = v.Thumb
 		row["p_sort"] = v.PSort
 		row["author_name"] = v.AuthorName
-		row["san_count"] = v.ScanCount
+		row["scan_count"] = v.ScanCount
 		row["comment_count"] = v.CommentCount
 		row["is_recommend"] = v.IsRecommend
 		row["is_top"] = v.IsTop

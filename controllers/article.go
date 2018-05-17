@@ -67,7 +67,7 @@ func (self *ArticleController) Table(){
 		row["status_text"] = AUDIT_STATUS[v.Status]
 		row["p_sort"] = v.PSort
 		row["author_name"] = v.AuthorName
-		row["san_count"] = v.ScanCount
+		row["scan_count"] = v.ScanCount
 		row["comment_count"] = v.CommentCount
 		row["is_recommend"] = v.IsRecommend
 		row["is_top"] = v.IsTop
@@ -98,7 +98,7 @@ func (self *ArticleController) Detail(){
 	row["status_text"] = AUDIT_STATUS[Article.Status]
 	row["p_sort"] = Article.PSort
 	row["author_name"] = Article.AuthorName
-	row["san_count"] = Article.ScanCount
+	row["scan_count"] = Article.ScanCount
 	row["comment_count"] = Article.CommentCount
 	row["is_recommend"] = Article.IsRecommend
 	row["is_top"] = Article.IsTop
