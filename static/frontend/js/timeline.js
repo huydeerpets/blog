@@ -10,11 +10,11 @@ var data = [
 		//     {'time':'10月25日 11:22','content':'感觉自己写的样式太丑了,兼容性不好,发现各种问题&nbsp;<i class="fa fa-frown-o"></i>'},
 		//     {'time':'10月24日 19:00','content':'zuoqy博客v.01基本功能全部完善!也成功接入搜狗联盟,关于QQ登陆，和微博登陆还在研究中'}
 		// ]},
-		{'title':'4月','day':[
-  		    {'time':'24日 21:00','content':'<i class="fa fa-paper-plane-o"></i>&nbsp;七学博客v1.0发布!'}
+		{'title':'5月','day':[
+  		    {'time':'1日 21:00','content':'<i class="fa fa-paper-plane-o"></i>&nbsp;七学博客v1.0发布!'}
   		]},
-		{'title':'2月','day':[
-   		    {'time':'','content':'七学博客项目启动!'}
+		{'title':'3月','day':[
+   		    {'time':'','content':'七学博客启动!'}
    		]}
 	]}
 ];
