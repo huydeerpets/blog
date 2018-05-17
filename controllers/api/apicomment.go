@@ -88,9 +88,13 @@ func (self *ApicommentController) PostComment(){
 	//	one.LikeCount = one.LikeCount+1
 	//	orm.NewOrm().Update(&one, "like_count")
 	//}
+
 	if err != nil{
 		self.QajaxList(err.Error(), -1, 0, "")
 	}
+	//评论成功article 里评论数据+1
+	models.Regulate("article", "comment_count", 1, "`Id`=?", article_id)
+
 	self.QajaxList("成功", 0, 0, mc)
 }
 
