@@ -199,7 +199,12 @@ func (self *ArticleController) AjaxSave(){
 		Article.Tags = strings.TrimSpace(self.GetString("tags"))
 		Article.Title = strings.TrimSpace(self.GetString("title"))
 		Article.Summary = strings.TrimSpace(self.GetString("summary"))
-		Article.Thumb = beego.AppConfig.String("site.url") + "/" + beego.AppConfig.String("uploadpath") + strings.TrimSpace(self.GetString("thumb"))
+		if strings.TrimSpace(self.GetString("thumb")) == ""{
+			Article.Thumb = ""
+		}else{
+			Article.Thumb = beego.AppConfig.String("site.url") + "/" + beego.AppConfig.String("uploadpath") + strings.TrimSpace(self.GetString("thumb"))
+		}
+
 		Article.Status, _ = self.GetInt("status")
 		Article.AdminId = self.userId
 		Article.AuthorName = self.userName
