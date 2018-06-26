@@ -130,7 +130,7 @@ func (self *MainController) AjaxArticleTable(){
 		filters = append(filters, "title__icontains", title)
 	}
 	if tag != 0{
-		filters = append(filters, "tags__icontains", tag)
+		filters = append(filters, "tags__FIND_IN_SET", tag)
 	}
 
 	result, count := models.ArticleGetList(page, limit, filters...)
