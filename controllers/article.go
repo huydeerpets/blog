@@ -158,6 +158,7 @@ func (self *ArticleController) Edit(){
 
 	tags := strings.Split(Article.Tags, ",")
 	list := make([]map[string]interface{}, len(tagList))
+	tagsInitStr := ""
 	for k, v := range tagList {
 		row := make(map[string]interface{})
 		row["checked"] = 0
@@ -165,13 +166,14 @@ func (self *ArticleController) Edit(){
 			tag, _ := strconv.Atoi(tags[i])
 			if tag == v.Id {
 				row["checked"] = 1
+				tagsInitStr = tagsInitStr + strconv.Itoa(v.Id) + ","
 			}
 		}
 		row["id"] = v.Id
 		row["name"] = v.Name
 		list[k] = row
 	}
-
+	self.Data["tagsInitStr"] = strings.TrimRight(tagsInitStr,",")
 	self.Data["tagList"] = list
 	self.Data["articleContent"] = ArticleContent
 	self.Data["data"] = Article
@@ -230,35 +232,36 @@ func (self *ArticleController) AjaxSave(){
 			self.QajaxMsg("", MSG_OK)
 		}
 
-	}
-	//修改
-	Article, _ := models.ArticleGetById(article_id)
-	Article.Tags = strings.TrimSpace(self.GetString("tags"))
-	Article.Title = strings.TrimSpace(self.GetString("title"))
-	Article.Summary = strings.TrimSpace(self.GetString("summary"))
-
-	if(Article.Thumb != strings.TrimSpace(self.GetString("thumb"))){
-		Article.Thumb = beego.AppConfig.String("site.url") + "/" + beego.AppConfig.String("uploadpath") + strings.TrimSpace(self.GetString("thumb"))
 	}else{
-		Article.Thumb = strings.TrimSpace(self.GetString("thumb"))
-	}
-	Article.Status, _ = self.GetInt("status")
-	Article.UpdateTime = time.Now().Unix()
+		//修改
+		Article, _ := models.ArticleGetById(article_id)
+		Article.Tags = strings.TrimSpace(self.GetString("tags"))
+		Article.Title = strings.TrimSpace(self.GetString("title"))
+		Article.Summary = strings.TrimSpace(self.GetString("summary"))
 
-	ArticleController, err := models.ArticleContentGetById(article_id)
+		if(Article.Thumb != strings.TrimSpace(self.GetString("thumb"))){
+			Article.Thumb = beego.AppConfig.String("site.url") + "/" + beego.AppConfig.String("uploadpath") + strings.TrimSpace(self.GetString("thumb"))
+		}else{
+			Article.Thumb = strings.TrimSpace(self.GetString("thumb"))
+		}
+		Article.Status, _ = self.GetInt("status")
+		Article.UpdateTime = time.Now().Unix()
 
-	orm.NewOrm().Begin()
+		ArticleController, err := models.ArticleContentGetById(article_id)
 
-	err = Article.Update()
-	ArticleController.Content = strings.TrimSpace(self.GetString("content"))
-	err = ArticleController.Update()
+		orm.NewOrm().Begin()
 
-	if err != nil{
-		err = orm.NewOrm().Rollback()
-		self.QajaxMsg(err.Error(), MSG_ERR)
-	}else{
-		err = orm.NewOrm().Commit()
-		self.QajaxMsg("", MSG_OK)
+		err = Article.Update()
+		ArticleController.Content = strings.TrimSpace(self.GetString("content"))
+		err = ArticleController.Update()
+
+		if err != nil{
+			err = orm.NewOrm().Rollback()
+			self.QajaxMsg(err.Error(), MSG_ERR)
+		}else{
+			err = orm.NewOrm().Commit()
+			self.QajaxMsg("", MSG_OK)
+		}
 	}
 
 }
