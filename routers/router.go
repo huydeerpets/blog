@@ -2,14 +2,15 @@ package routers
 
 import (
 	"blog/controllers"
-	"github.com/astaxie/beego"
 	"blog/controllers/api"
+
+	"github.com/astaxie/beego"
 )
 
 func init() {
 
 	//前台
-    beego.Router("/", &controllers.MainController{}, "*:Index")
+	beego.Router("/", &controllers.MainController{}, "*:Index")
 	beego.Router("/ajaxarticletable", &controllers.MainController{}, "*:AjaxArticleTable")
 	//文章列表
 	beego.Router("/farticle", &controllers.MainController{}, "*:Article")
@@ -19,7 +20,7 @@ func init() {
 	beego.Router("/fabout", &controllers.MainController{}, "*:About")
 	//beego.AutoRouter(&controllers.MainController{})
 
-    //后台
+	//后台
 	beego.Router("/login", &controllers.LoginController{}, "*:LoginIn")
 	beego.Router("/login_out", &controllers.LoginController{}, "*:LoginOut")
 	//beego.Router("/no_auth", &controllers.LoginController{}, "*:NoAuth")
@@ -48,8 +49,10 @@ func init() {
 				beego.NSRouter("/getcomment", &api.ApicommentController{}, "get:GetComment"),
 				//留言
 				beego.NSRouter("/postcomment", &api.ApicommentController{}, "post:PostComment"),
-			),
 
+				//emeiym留言
+				beego.NSRouter("/emeiympostcomment", &api.ApiEmeiymCommentController{}, "post:PostComment"),
+			),
 		)
 	//注册 namespace
 	beego.AddNamespace(ns)

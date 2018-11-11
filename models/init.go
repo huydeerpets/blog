@@ -3,10 +3,11 @@ package models
 import (
 	"net/url"
 
+	"fmt"
+
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/orm"
 	_ "github.com/go-sql-driver/mysql"
-	"fmt"
 )
 
 func Init() {
@@ -26,7 +27,8 @@ func Init() {
 		dsn = dsn + "&loc=" + url.QueryEscape(timezone)
 	}
 	orm.RegisterDataBase("default", "mysql", dsn)
-	orm.RegisterModel(new(Admin), new(Auth), new(Role), new(RoleAuth),new(Article),new(Tag),new(ArticleContent), new(Comment))
+	orm.RegisterModel(new(Admin), new(Auth), new(Role), new(RoleAuth), new(Article), new(Tag), new(ArticleContent), new(Comment),
+		new(EmeiymVisitorComment))
 
 	if beego.AppConfig.String("runmode") == "dev" {
 		orm.Debug = true
@@ -46,8 +48,8 @@ func TableName(name string) string {
 //@return               err             返回错误
 func Regulate(table, field string, step int, condition string, conditionArgs ...interface{}) (err error) {
 	table = TableName(table) //表处理
-	mark := "+"             //符号
-	if step < 0 {           //步长处理
+	mark := "+"              //符号
+	if step < 0 {            //步长处理
 		step = -step
 		mark = "-"
 	}
